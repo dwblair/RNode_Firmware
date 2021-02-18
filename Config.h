@@ -37,7 +37,8 @@
 
 		#define FLOW_CONTROL_ENABLED true
 		#define QUEUE_SIZE 0
-
+    #define QUEUE_BUF_SIZE (QUEUE_SIZE+1)
+    #define QUEUE_MEM QUEUE_BUF_SIZE * MTU
 		#define EEPROM_SIZE 512
 		#define EEPROM_OFFSET EEPROM_SIZE-EEPROM_RESERVED
 	#endif
@@ -95,11 +96,11 @@
 	uint8_t sbuf[MTU];
 	uint8_t cbuf[CMD_L];
 
-	#if QUEUE_SIZE > 0
+	//#if QUEUE_SIZE > 0
 		uint8_t tbuf[MTU];
 		uint8_t qbuf[QUEUE_MEM];
 		size_t  queued_lengths[QUEUE_BUF_SIZE];
-	#endif
+	//#endif
 
 	uint32_t stat_rx		= 0;
 	uint32_t stat_tx		= 0;
